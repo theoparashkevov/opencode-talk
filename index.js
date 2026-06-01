@@ -5,7 +5,7 @@ import { getConfig, setConfig, DEFAULTS } from "./src/settings.js";
 
 const noop = () => {};
 
-export default {
+const plugin = {
   id: "opencode-talk",
   tui: async (api) => {
     const kv = api.kv;
@@ -288,3 +288,7 @@ export default {
     }
   },
 };
+
+export const id = plugin.id;
+export const tui = plugin.tui;
+export default plugin;
