@@ -6,14 +6,20 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": ["dist", "README.md", "LICENSE"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theoparashkevov/opencode-talk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theoparashkevov/opencode-talk/issues"
+  },
+  "homepage": "https://github.com/theoparashkevov/opencode-talk#readme",
   "scripts": {
     "build": "tsc",
-    "bundle": "bun run bundle:server && bun run bundle:tui",
-    "bundle:server": "bun build src/server.ts --outfile=dist/opencode-talk.server.js --target=bun --format=esm --external '@opencode-ai/plugin'",
-    "bundle:tui": "bun build src/tui.ts --outfile=dist/opencode-talk.tui.js --target=bun --format=esm --external '@opencode-ai/plugin'",
+    "bundle": "bun build ./index.js --outfile=dist/index.js --target=bun --format=esm",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run bundle"
   },
   "keywords": ["opencode", "voice", "whisper", "speech-to-text", "plugin"],
   "license": "MIT",
