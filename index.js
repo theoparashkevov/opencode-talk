@@ -24,12 +24,12 @@ export default {
       const dots = ["·  ", "·· ", "···"];
 
       // Show first frame immediately
-      toast({ variant: "info", title: "Recording", message: "Listening " + dots[0], duration: 60_000 });
+      toast({ variant: "info", title: "🎤 Recording", message: "Listening " + dots[0], duration: 60_000 });
 
       // Animate dots every 500ms
       recordingIndicator = setInterval(() => {
         dotCount = (dotCount + 1) % dots.length;
-        toast({ variant: "info", title: "Recording", message: "Listening " + dots[dotCount], duration: 60_000 });
+        toast({ variant: "info", title: "🎤 Recording", message: "Listening " + dots[dotCount], duration: 60_000 });
       }, 500);
     }
 
@@ -95,14 +95,14 @@ export default {
             await rec.stop();
             toast({
               variant: "info",
-              title: "Transcribing",
+              title: "⏳ Transcribing",
               message: "Sending audio to Whisper…",
               duration: 3000,
             });
 
             const tempFile = rec.getTempFile();
             if (!tempFile) {
-              toast({ variant: "error", title: "Error", message: "No audio captured.", duration: 4000 });
+              toast({ variant: "error", title: "❌ Error", message: "No audio captured.", duration: 4000 });
               return;
             }
 
@@ -115,7 +115,7 @@ export default {
             if (cfg.showTranscriptionToast) {
               toast({
                 variant: "success",
-                title: "Transcription Done",
+                title: "✅ Transcription Done",
                 message: text.slice(0, 60) + (text.length > 60 ? "…" : ""),
                 duration: 3000,
               });
@@ -124,7 +124,7 @@ export default {
             stopRecordingIndicator();
             toast({
               variant: "error",
-              title: "Voice Error",
+              title: "❌ Voice Error",
               message: String(err),
               duration: 5000,
             });
