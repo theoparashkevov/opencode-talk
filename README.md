@@ -278,6 +278,10 @@ bun run bundle
 | `Invalid OpenAI API key` | Check that `OPENAI_API_KEY` is set and starts with `sk-`. You can also set it via `/voice-config`. |
 | Transcription is empty | Ensure your microphone isn't muted and you speak for at least 1–2 seconds. Very short clips may return empty strings from Whisper. |
 | `<leader>v` doesn't work | The leader key in opencode is `ctrl+x`. Press `ctrl+x`, release, then press `v`. |
+| Plugin not listed in `/plugins` after `opencode plugin install` | The installer may write config without unpacking the package. Use **local path** instead (see Development Installation above) or check that the package exists in `~/.config/opencode/.opencode/node_modules/.opencode/node_modules/@theoparashkevov/opencode-talk/`.
+| Plugin not listed in `/plugins` after `opencode plugin install` | The installer may write config without unpacking the package. Use **local path** instead (see Development Installation above) or check that the package exists in `~/.config/opencode/.opencode/node_modules/.opencode/node_modules/@theoparashkevov/opencode-talk/`.
+| Plugin not listed in `/plugins` after `opencode plugin install` | The installer may write config without unpacking the package. Use **local path** instead (see Development Installation above) or check that the package exists in `~/.config/opencode/.opencode/node_modules/.opencode/node_modules/@theoparashkevov/opencode-talk/`.
+| Plugin not listed in `/plugins` after `opencode plugin install` | The installer may write config without unpacking the package. Use **local path** instead (see Development Installation above) or check that the package exists in `~/.config/opencode/.opencode/node_modules/.opencode/node_modules/@theoparashkevov/opencode-talk/`.
 
 ---
 
