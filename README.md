@@ -9,6 +9,7 @@
 Toggle your microphone, speak naturally, and get Whisper-quality transcription injected straight into your opencode prompt. No context switching, no copy-paste, no browser tabs.
 
 [![bun](https://img.shields.io/badge/runtime-bun-black?logo=bun)](https://bun.sh)
+[![npm](https://img.shields.io/npm/v/@theoparashkevov/opencode-talk?label=npm)](https://www.npmjs.com/package/@theoparashkevov/opencode-talk)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![tests](https://img.shields.io/badge/tests-31%20passing-brightgreen?logo=jest)](./src/__tests__)
 [![CI](https://github.com/theoparashkevov/opencode-talk/actions/workflows/ci-release.yml/badge.svg)](https://github.com/theoparashkevov/opencode-talk/actions)
