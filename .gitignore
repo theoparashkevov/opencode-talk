@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.wav
+*.flac
+*.mp3
+.env
+.env.local
+.sisyphus/evidence/
+coverage/
+*.log
+.DS_Store

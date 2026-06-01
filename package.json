@@ -1,0 +1,36 @@
+{
+  "name": "opencode-talk",
+  "version": "1.0.0",
+  "description": "Voice-to-text plugin for opencode — toggle recording, transcribe with OpenAI Whisper, inject into TUI",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc",
+    "bundle": "bun run bundle:server && bun run bundle:tui",
+    "bundle:server": "bun build src/server.ts --outfile=dist/opencode-talk.server.js --target=bun --format=esm --external '@opencode-ai/plugin'",
+    "bundle:tui": "bun build src/tui.ts --outfile=dist/opencode-talk.tui.js --target=bun --format=esm --external '@opencode-ai/plugin'",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run build"
+  },
+  "keywords": ["opencode", "voice", "whisper", "speech-to-text", "plugin"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "zod": "^3.23.0",
+    "openai": "^4.52.0"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "*"
+  },
+  "peerDependenciesMeta": {
+    "@opencode-ai/plugin": {
+      "optional": true
+    }
+  }
+}
