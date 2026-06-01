@@ -10,7 +10,8 @@ Toggle your microphone, speak naturally, and get Whisper-quality transcription i
 
 [![bun](https://img.shields.io/badge/runtime-bun-black?logo=bun)](https://bun.sh)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![tests](https://img.shields.io/badge/tests-37%20passing-brightgreen?logo=jest)](./src/__tests__)
+[![tests](https://img.shields.io/badge/tests-31%20passing-brightgreen?logo=jest)](./src/__tests__)
+[![CI](https://github.com/theoparashkevov/opencode-talk/actions/workflows/ci-release.yml/badge.svg)](https://github.com/theoparashkevov/opencode-talk/actions)
 
 </div>
 
