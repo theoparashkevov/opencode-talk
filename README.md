@@ -2,6 +2,8 @@
 
 # opencode-talk
 
+![Banner](./assets/banner.svg)
+
 **Voice-to-text for the terminal IDE.**
 
 Toggle your microphone, speak naturally, and get Whisper-quality transcription injected straight into your opencode prompt. No context switching, no copy-paste, no browser tabs.
