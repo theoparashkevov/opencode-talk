@@ -11,6 +11,10 @@ Welcome to the internal documentation for **opencode-talk** — a voice-to-text 
 | [API Reference](api.md) | Public interfaces, key functions, type signatures |
 | [Development Guide](development.md) | How to run, test, extend, and add new features |
 | [Deployment](deployment.md) | Installation methods, npm publishing, versioning |
+| [CI/CD](ci-cd.md) | Automated testing, releasing, and publishing pipeline |
+| [CI/CD](ci-cd.md) | Automated testing, releasing, and publishing pipeline |
+| [CI/CD](ci-cd.md) | Automated testing, releasing, and publishing pipeline |
+| [CI/CD](ci-cd.md) | Automated testing, releasing, and publishing pipeline |
 
 ## Quick orientation
 
@@ -24,6 +28,7 @@ opencode-talk/
 │   ├── types.ts             ← Shared interfaces
 │   ├── utils.ts             ← Temp files, logging, safe spawn
 │   └── __tests__/           ← 37 unit tests
+├── .github/workflows/       ← CI/CD: test on PR, release + publish on tag
 ├── assets/
 │   └── banner.svg           ← README header image
 └── docs/                    ← You are here
