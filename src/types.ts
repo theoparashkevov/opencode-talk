@@ -67,7 +67,7 @@ export interface VoicePluginState {
 // Ref: https://opencode.ai/docs/plugins
 // ---------------------------------------------------------------------------
 
-export interface OpencodeAppLogBody {
+export interface OpencodeAppLogBody extends Record<string, unknown> {
   service: string;
   level: "debug" | "info" | "warn" | "error";
   message: string;
