@@ -73,77 +73,80 @@ const plugin = {
     // ------------------------------------------------------------------
     // /voice  –  toggle recording
     // ------------------------------------------------------------------
-    api.command.register(() => [
-      {
-        title: "Toggle Voice Recording",
-        value: "voiceToggle",
-        description: "Start or stop voice recording and transcribe with Whisper",
-        category: "Voice",
-        keybind: "<leader>v",
-        slash: { name: "voice", aliases: ["mic", "talk"] },
-        suggested: true,
-        onSelect: async () => {
-          const rec = getRecorder();
-          try {
-            if (!rec.isRecording()) {
-              await rec.start();
-              startRecordingIndicator();
-              return;
-            }
+    api.keymap.registerLayer({
+      commands: [
+        {
+          name: "voice.toggle",
+          title: "Toggle Voice Recording",
+          category: "Plugin",
+          namespace: "palette",
+          slashName: "voice",
+          run: async () => {
+            const rec = getRecorder();
+            try {
+              if (!rec.isRecording()) {
+                await rec.start();
+                startRecordingIndicator();
+                return;
+              }
 
-            stopRecordingIndicator();
-            await rec.stop();
-            toast({
-              variant: "info",
-              title: "⏳ Transcribing",
-              message: "Sending audio to Whisper…",
-              duration: 3000,
-            });
-
-            const tempFile = rec.getTempFile();
-            if (!tempFile) {
-              toast({ variant: "error", title: "❌ Error", message: "No audio captured.", duration: 4000 });
-              return;
-            }
-
-            const prov = getProvider();
-            const text = await prov.transcribe(tempFile);
-            await cleanupTempFile(tempFile);
-            await api.client.tui.appendPrompt({ text });
-
-            const cfg = getConfig(kv);
-            if (cfg.showTranscriptionToast) {
+              stopRecordingIndicator();
+              await rec.stop();
               toast({
-                variant: "success",
-                title: "✅ Transcription Done",
-                message: text.slice(0, 60) + (text.length > 60 ? "…" : ""),
+                variant: "info",
+                title: "⏳ Transcribing",
+                message: "Sending audio to Whisper…",
                 duration: 3000,
               });
-            }
-          } catch (err) {
-            stopRecordingIndicator();
-            toast({
-              variant: "error",
-              title: "❌ Voice Error",
-              message: String(err),
-              duration: 5000,
-            });
-          }
-        },
-      },
 
-      // ----------------------------------------------------------------
-      // /voice-config  –  settings menu
-      // ----------------------------------------------------------------
-      {
-        title: "Voice Settings",
-        value: "voiceConfig",
-        description: "Configure API key, model, audio device and prompt",
-        category: "Voice",
-        slash: { name: "voice-config", aliases: ["talk-config", "vconf"] },
-        onSelect: () => openSettingsMenu(kv, toast, resetInstances),
-      },
-    ]);
+              const tempFile = rec.getTempFile();
+              if (!tempFile) {
+                toast({ variant: "error", title: "❌ Error", message: "No audio captured.", duration: 4000 });
+                return;
+              }
+
+              const prov = getProvider();
+              const text = await prov.transcribe(tempFile);
+              await cleanupTempFile(tempFile);
+              await api.client.tui.appendPrompt({ text });
+
+              const cfg = getConfig(kv);
+              if (cfg.showTranscriptionToast) {
+                toast({
+                  variant: "success",
+                  title: "✅ Transcription Done",
+                  message: text.slice(0, 60) + (text.length > 60 ? "…" : ""),
+                  duration: 3000,
+                });
+              }
+            } catch (err) {
+              stopRecordingIndicator();
+              toast({
+                variant: "error",
+                title: "❌ Voice Error",
+                message: String(err),
+                duration: 5000,
+              });
+            }
+          },
+        },
+
+        // ----------------------------------------------------------------
+        // /voice-config  –  settings menu
+        // ----------------------------------------------------------------
+        {
+          name: "voice.config",
+          title: "Voice Settings",
+          category: "Plugin",
+          namespace: "palette",
+          slashName: "voice-config",
+          run: () => openSettingsMenu(kv, toast, resetInstances),
+        },
+      ],
+      bindings: [
+        { key: "<leader>v", cmd: "voice.toggle", desc: "Toggle voice dictation" },
+      ],
+    });
 
     function openSettingsMenu(kv, toast, onChange) {
       const cfg = getConfig(kv);
