@@ -1,6 +1,6 @@
 {
   "name": "@theoparashkevov/opencode-talk",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Voice-to-text plugin for opencode — toggle recording, transcribe with OpenAI Whisper, inject into TUI",
   "type": "module",
   "main": "dist/index.js",
