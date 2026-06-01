@@ -1,0 +1,12 @@
+{
+  "active_plan": "/home/teo/projects/opencode-talk/.sisyphus/plans/voice-plugin.md",
+  "started_at": "2026-05-22T14:32:59.100Z",
+  "session_ids": [
+    "ses_1affe8957ffeTHr3drmi1ehp2v"
+  ],
+  "session_origins": {
+    "ses_1affe8957ffeTHr3drmi1ehp2v": "direct"
+  },
+  "plan_name": "voice-plugin",
+  "agent": "atlas"
+}
