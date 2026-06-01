@@ -5,7 +5,9 @@ dist/
 *.mp3
 .env
 .env.local
-.sisyphus/evidence/
+.sisyphus/
+opencode-talk.opencode.json
 coverage/
 *.log
 .DS_Store
+
