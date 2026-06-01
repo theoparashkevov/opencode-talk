@@ -57,16 +57,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Check if version already tagged
+      - name: Check if current commit already released
         id: check_version
         run: |
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          if git tag -l "v$CURRENT_VERSION" | grep -q "v$CURRENT_VERSION"; then
+          if git tag --points-at HEAD | grep -q '^v'; then
             echo "already_tagged=true" >> $GITHUB_OUTPUT
-            echo "Version v$CURRENT_VERSION is already tagged — skipping bump."
+            echo "HEAD already has a version tag — skipping bump."
           else
             echo "already_tagged=false" >> $GITHUB_OUTPUT
-            echo "Version v$CURRENT_VERSION is NOT tagged — will bump."
+            echo "No version tag on HEAD — will bump and release."
           fi
 
       - name: Bump patch version
@@ -82,24 +81,29 @@ jobs:
           echo "Released v$NEW_VERSION"
 
       - name: Build bundle
+        if: steps.check_version.outputs.already_tagged == 'false'
         run: bun run bundle
 
       - name: Setup Node.js for npm publishing
+        if: steps.check_version.outputs.already_tagged == 'false'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Publish to npm
+        if: steps.check_version.outputs.already_tagged == 'false'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Get version for release
+        if: steps.check_version.outputs.already_tagged == 'false'
         id: get_version
         run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
+        if: steps.check_version.outputs.already_tagged == 'false'
         uses: ncipollo/release-action@v1
         with:
           tag: v${{ steps.get_version.outputs.VERSION }}
